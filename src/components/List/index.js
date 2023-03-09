@@ -1,27 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import { MdAdd } from 'react-icons/md';
+import { MdAdd } from "react-icons/md";
 
-import Card from '../Card';
+import Card from "../Card";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
-export default function index({ data }) {
+export default function index({ data, index: listIndex }) {
   return (
     <Container done={data.done}>
       <header>
         <h2>{data.title}</h2>
         {data.creatable && (
           <button type="button">
-            <MdAdd size={24} color='#FFF' />
+            <MdAdd size={24} color="#FFF" />
           </button>
         )}
-        
       </header>
 
       <ul>
-        { data.cards.map(card => <Card key={card.id} data={card}  />) }
+        {data.cards.map((card, index) => (
+          <Card key={card.id} index={index} listIndex={listIndex} data={card} />
+        ))}
       </ul>
     </Container>
-  )
+  );
 }
